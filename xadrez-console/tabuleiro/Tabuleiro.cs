@@ -59,7 +59,6 @@ namespace tabuleiro
 
             return false;
 
-            //return peca(pos) != null;
         }
     }
 }
