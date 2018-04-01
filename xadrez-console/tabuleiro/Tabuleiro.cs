@@ -48,16 +48,18 @@ namespace tabuleiro
             }
         }
 
-        public bool existePeca(Posicao pos) {
+        public bool existePeca(Posicao pos)
+        {
 
             validarPosicao(pos);
 
             if (peca(pos) != null) {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
 
+            //return peca(pos) != null;
         }
     }
 }
