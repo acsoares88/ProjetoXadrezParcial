@@ -11,39 +11,61 @@ namespace xadrezconsole
 
             try
             {
-                PartidaDeXadrez partida = new PartidaDeXadrez(); 
+                PartidaDeXadrez partida = new PartidaDeXadrez();
 
-                while (partida.terminada == false) {
-                    Console.Clear();
-                    Tela.imprimeTabuleiro(partida.tab);
 
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
 
-                    bool[,] possicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
+                while (partida.terminada == false)
+                {
+                    try
+                    {
+                        Console.Clear();
+                        Tela.imprimeTabuleiro(partida.tab);
 
-                    Console.Clear();
-                    Tela.imprimeTabuleiro(partida.tab,possicoesPossiveis);
+                        Console.WriteLine();
+                        Console.WriteLine(" Turno: " + partida.turno);
+                        Console.WriteLine(" Aguardando jogada: " + partida.jogadorAtual);
+                        Console.WriteLine();
 
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeOrigem(origem);
 
-                    partida.executaMovimento(origem, destino);
+
+                        bool[,] possicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
+
+                        Console.Clear();
+                        Tela.imprimeTabuleiro(partida.tab, possicoesPossiveis);
+
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeDestino(origem, destino);
+
+                        partida.realizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
 
                 }
 
-               
-                Tela.imprimeTabuleiro(partida.tab);
 
-            }catch(TabuleiroException e){
+
+              
+
+
+                //PosicaoXadrez posicaoXadrez = new PosicaoXadrez('a', 1);
+                //Console.WriteLine(posicaoXadrez);
+
+                //Console.WriteLine(posicaoXadrez.toPosicao());
+
+            }
+            catch (TabuleiroException e)
+            {
                 Console.WriteLine(e.Message);
             }
-
-            //PosicaoXadrez posicaoXadrez = new PosicaoXadrez('a', 1);
-            //Console.WriteLine(posicaoXadrez);
-
-            //Console.WriteLine(posicaoXadrez.toPosicao());
-
         }
     }
 }
