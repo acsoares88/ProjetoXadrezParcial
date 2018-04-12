@@ -27,18 +27,25 @@ namespace xadrezconsole
 
         public static void imprimirPecasCapturadas(PartidaDeXadrez partida){
 
+
+
+
             Console.WriteLine("Pecas capturadas: ");
             Console.Write("Brancas: ");
-            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            imprimirConjunto(partida.pecasCapturadas, Cor.Branca);
+            Console.Write("       ");
             Console.Write("Pretas: ");
-            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            imprimirConjunto(partida.pecasCapturadas, Cor.Preta);
         }
 
-        public static void imprimirConjunto(HashSet<Peca> conjunto)
+        public static void imprimirConjunto(HashSet<Peca> conjunto, Cor cor)
         {
             Console.Write("[");
             foreach(Peca x in conjunto){
-                Console.Write(x + " ");
+                if (x.cor.Equals(cor))
+                {
+                    Console.Write(x + " ");
+                }
             }
             Console.Write("]");
         }
