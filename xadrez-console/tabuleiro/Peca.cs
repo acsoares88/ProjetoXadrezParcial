@@ -22,6 +22,11 @@ namespace tabuleiro
             this.qtdMovimentos = this.qtdMovimentos + 1;
         }
 
+        public void decrementarQuantidadeMovimento()
+        {
+            this.qtdMovimentos = this.qtdMovimentos - 1;
+        }
+
         public abstract bool[,] movimentosPossiveis();
 
         public bool exiteMovimentosPossiveis(){
