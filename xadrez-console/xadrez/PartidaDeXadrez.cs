@@ -40,6 +40,28 @@ namespace xadrez
                 pecasCapturadas.Add(pecaCapturada);
             }
 
+            // Roque Pequeno
+            if(p is Rei && posDestino.coluna == posOrigem.coluna + 2){
+                Posicao origemTorre = new Posicao(posOrigem.linha, posOrigem.coluna + 3);
+                Posicao destinoTorre = new Posicao(posOrigem.linha, posOrigem.coluna + 1);
+                Peca t = tab.retirarPeca(origemTorre);
+                t.incrementarQuantidadeMovimento();
+                tab.colocarPeca(t, destinoTorre);
+
+            }
+
+
+            // Roque Grande
+            if (p is Rei && posDestino.coluna == posOrigem.coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(posOrigem.linha, posOrigem.coluna - 4);
+                Posicao destinoTorre = new Posicao(posOrigem.linha, posOrigem.coluna - 1);
+                Peca t = tab.retirarPeca(origemTorre);
+                t.incrementarQuantidadeMovimento();
+                tab.colocarPeca(t, destinoTorre);
+
+            }
+
             return pecaCapturada;
         }
 
@@ -55,7 +77,7 @@ namespace xadrez
             colocarNovaPeca('d', 2, new Torre(tab, Cor.Branca));
             colocarNovaPeca('e', 2, new Torre(tab, Cor.Branca));
             colocarNovaPeca('e', 1, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
+            colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca, this));
 
 
             colocarNovaPeca('c', 7, new Torre(tab, Cor.Preta));
@@ -63,7 +85,7 @@ namespace xadrez
             colocarNovaPeca('d', 7, new Torre(tab, Cor.Preta));
             colocarNovaPeca('e', 7, new Torre(tab, Cor.Preta));
             colocarNovaPeca('e', 8, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('d', 8, new Rei(tab, Cor.Preta));
+            colocarNovaPeca('d', 8, new Rei(tab, Cor.Preta, this));
         }
 
         public HashSet<Peca> pecasCapturadasPorCor(Cor cor){
@@ -131,6 +153,28 @@ namespace xadrez
             }
 
             tab.colocarPeca(p, origem);
+
+            // Roque Pequeno
+            if (p is Rei && dest.coluna == origem.coluna + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);
+                Peca t = tab.retirarPeca(destinoTorre);
+                t.decrementarQuantidadeMovimento();
+                tab.colocarPeca(t, origemTorre);
+
+            }
+
+            // Roque Pequeno
+            if (p is Rei && dest.coluna == origem.coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna  -4 );
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna - 1);
+                Peca t = tab.retirarPeca(destinoTorre);
+                t.decrementarQuantidadeMovimento();
+                tab.colocarPeca(t, origemTorre);
+
+            }
 
         }
 
