@@ -175,7 +175,7 @@ namespace xadrez
                     pecas.Remove(peca);
                     Peca dama = new Dama(tab, peca.cor);
                     tab.colocarPeca(dama, destino);
-                    pecas.Add(dama);
+                    pecas.Add(dama); 
                 }
             }
 
